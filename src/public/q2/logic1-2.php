@@ -1,7 +1,7 @@
 <?php
 $incomes = new Incomes();
-// echo "incomeテーブルのamountカラムの合計: ". $incomes->findTotalIncomes . "円";
-var_dump($incomes->findTotalIncomes);
+echo "incomeテーブルのamountカラムの合計: ". $incomes->findTotalIncomes() . "円";
+
 
 class Incomes 
 {
@@ -11,9 +11,9 @@ class Incomes
   {
     $this->pdo = new PDO('mysql:dbname=tq_quest;host=mysql', 'root', 'password');
   }
-  private function findTotalIncomes() 
+  public function findTotalIncomes() 
   {
-    $incomes = $this->fethtchIncomes();
+    $incomes = $this->fetchIncomes();
     $totalIncomes = 0;
     foreach ($incomes as $income) {
       $totalIncomes += $income["amount"];
